@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hotel</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<h1>Check our Hotels</h1>
+	<h3>Select a number of nights:</h3>
+	<div id="main">
+		<input type="text" id="hotel">
+		<br>
+		<br>
+		Hotels:
+		
+		<div><br>Golden
+			<p id="result1"></p>
+		</div>
+		<br>
+		<div>Plaza
+			<p id="result2"></p>
+		</div>
+		<br>
+		<div>Royalty
+			<p id="result3"></p>
+		</div>
+		<br>
+		<button id="btn">Check</button>
+	</div>
+
+
+<script type="text/javascript">
+	function all() {
+		function HotelConstructor(name, rooms) {
+			this.name = name;
+			this.rooms = rooms;
+			this.booked = Math.floor(Math.random()* 11);
+			this.checkAvailability = function() {
+				return this.booked;
+			}
+		}
+
+		var hotelGolden = new HotelConstructor("Golden", 8);
+		var hotelPlaza = new HotelConstructor("Plaza", 9);
+		var hotelRoyalty = new HotelConstructor("Royalty", 10);
+
+		var nights = document.getElementById("hotel").value;
+
+		if (hotelGolden.checkAvailability() > Number(nights)) {
+			document.getElementById("result1").innerHTML = "<button> I'll reserve</button>";
+		} else {
+			document.getElementById("result1").innerHTML = "Sorry, no free room for " + nights + " nights";
+		}
+
+		if (hotelPlaza.checkAvailability() > Number(nights)) {
+			document.getElementById("result2").innerHTML = "<button> I'll reserve</button>";
+		} else {
+			document.getElementById("result2").innerHTML = "Sorry, no free room for " + nights + " nights";
+		}
+
+		if (hotelRoyalty.checkAvailability() > Number(nights)) {
+			document.getElementById("result3").innerHTML = "<button> I'll reserve</button>";
+		} else {
+			document.getElementById("result3").innerHTML = "Sorry, no free room for " + nights + " nights";
+		}
+	}
+		document.getElementById("btn").addEventListener("click",all,false);
+	
+	
+</script>
+
+</body>
+
+</html>
